@@ -37,13 +37,13 @@ module "compute" {
   tailscale_auth_key = local.core_secrets["tailscale_auth_key"]
 }
 
-module "database" {
-  source                = "./modules/database"
-  vpc_id                = module.networking.vpc_id
-  private_subnet_ids    = module.networking.private_subnet_ids
-  ec2_security_group_id = module.compute.ec2_security_group_id
-  project_name          = local.project_name
-}
+# module "database" {
+#  source                = "./modules/database"
+#  vpc_id                = module.networking.vpc_id
+#  private_subnet_ids    = module.networking.private_subnet_ids
+#  ec2_security_group_id = module.compute.ec2_security_group_id
+#  project_name          = local.project_name
+#}
 
 module "dns" {
   source        = "./modules/dns"

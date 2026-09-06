@@ -82,11 +82,11 @@ jobs:
           terraform init
           terraform apply -auto-approve
 
-      - name: 4.5. Extraer Outputs de Terraform para Ansible
-        working-directory: ./terraform
-        run: |
-          DB_ENDPOINT="$(terraform output -raw database_endpoint)"
-          echo "DB_ENDPOINT=$DB_ENDPOINT" >> "$GITHUB_ENV"
+#      - name: 4.5. Extraer Outputs de Terraform para Ansible
+#        working-directory: ./terraform
+#        run: |
+#          DB_ENDPOINT="$(terraform output -raw database_endpoint)"
+#          echo "DB_ENDPOINT=$DB_ENDPOINT" >> "$GITHUB_ENV"
 
       - name: 5. Extraer Tailscale Auth Key de AWS Secrets Manager
         id: fetch-ts-key
@@ -113,7 +113,7 @@ jobs:
       - name: 8. Ejecutar Ansible Playbook vía Tailscale SSH
         env:
           AWS_ACCOUNT_ID: "${{ secrets.AWS_ACCOUNT_ID }}"
-          DB_ENDPOINT: "${{ env.DB_ENDPOINT }}"
+#          DB_ENDPOINT: "${{ env.DB_ENDPOINT }}"
         run: |
           export ANSIBLE_HOST_KEY_CHECKING=False
           export ANSIBLE_REMOTE_USER=admin
