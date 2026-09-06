@@ -114,6 +114,7 @@ jobs:
         env:
           AWS_ACCOUNT_ID: "${{ secrets.AWS_ACCOUNT_ID }}"
 #          DB_ENDPOINT: "${{ env.DB_ENDPOINT }}"
+          DB_PASSWORD: "${{ secrets.DB_PASSWORD }}"
         run: |
           export ANSIBLE_HOST_KEY_CHECKING=False
           export ANSIBLE_REMOTE_USER=admin
@@ -121,4 +122,4 @@ jobs:
           pip3 install boto3 botocore
           ansible-galaxy collection install amazon.aws
 
-          ansible-playbook -i ansible/inventory/aws_ec2.yml ansible/site.yml -e "aws_account_id=${AWS_ACCOUNT_ID}" -e "db_endpoint=${DB_ENDPOINT}"
+          ansible-playbook -i ansible/inventory/aws_ec2.yml ansible/site.yml -e "aws_account_id=${AWS_ACCOUNT_ID}" -e "db_password=${DB_PASSWORD}"

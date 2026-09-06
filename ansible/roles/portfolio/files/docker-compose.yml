@@ -87,7 +87,7 @@ services:
     container_name: db-vaultwarden
     restart: unless-stopped
     environment:
-      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=myssticwarden
     volumes:
